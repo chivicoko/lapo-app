@@ -122,7 +122,7 @@ const Navbar: React.FC = () => {
                   type="text"
                   placeholder="Search"
                   name="searchText"
-                  className="bg-transparent sm:w-[200px] min-w-full p-1 border-0 text-xs focus:outline-0 focus:ring-0 text-[#666666]"
+                  className="bg-transparent w-[110px] sm:w-[200px] min-w-full p-1 border-0 text-xs focus:outline-0 focus:ring-0 text-[#666666]"
                 />
               </div>
               }
