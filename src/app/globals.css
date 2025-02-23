@@ -1,0 +1,182 @@
+/* globals.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.boxShadowWithTransition:hover {
+  box-shadow: 0 0 5px black;
+  transform: scale(1.03);
+}
+
+* {
+  font-family: var(--font-satoshi), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {
+  height: 100vh;
+  min-height: 100vh;
+}
+
+/* loader */
+.loader {
+  display: inline-grid;
+  width: 40px;
+  aspect-ratio: 1;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  grid-area: 1/1;
+  border-radius: 50%;
+  background: repeating-conic-gradient(#CCE2FF 0 60deg, #014DAF 0 120deg);
+  animation: l6 4s linear infinite;
+}
+.loader:before {
+  translate: 0 -100%;
+}
+.loader:after {
+  padding: 20%;
+  mask: conic-gradient(#000 0 0) content-box exclude, conic-gradient(#000 0 0);
+  animation-direction: reverse;
+}
+@keyframes l6 {to { rotate: 1turn; }}
+
+
+/* scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  /* display: none; */
+  height: 4px;
+  width: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #E3E4E6;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #014DAF;
+  border-radius: 8px;
+  width: 2px;
+  cursor: pointer;
+}
+
+/* scrollbar2 */
+.custom-scrollbar2::-webkit-scrollbar {
+  width: 8px;
+  /* display: none; */
+  height: 4px;
+  width: 2px;
+}
+
+.custom-scrollbar2::-webkit-scrollbar-track {
+  background: transparent;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.custom-scrollbar2::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 8px;
+  width: 2px;
+  cursor: pointer;
+}
+
+/* recharts legend color icons */
+.recharts-default-legend .recharts-legend-item svg {
+  border-radius: 100%;
+  /* border: 1px solid red;
+  background: blue; */
+  width: 8px;
+  height: 8px;
+  padding: 0;
+}
+.recharts-default-legend .recharts-legend-item span {
+  font-size: 12px;
+  color: #374151 !important;
+}
+
+/* recharts line chart */
+.recharts-responsive-container {
+  /* padding-left: -20px;
+  margin-left: -20px; */
+}
+.recharts-responsive-container .recharts-wrapper {
+  /* padding-left: -20px; */
+  margin-inline: -25px;
+}
+.recharts-responsive-container .recharts-wrapper .recharts-surface .recharts-layer.recharts-cartesian-axis-tick {
+  font-size: 12px;
+}
+
+
+/* Styles for the toast container */
+.custom-toast {
+  background-color: #1a202c; /* Dark background */
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  width: fit-content;
+  min-width: fit-content;
+  border-left: 5px solid #48bb78;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+/* Custom icon size */
+.custom-toast .react-hot-toast-icon {
+  font-size: 24px;
+}
+
+/* bounce animation */
+@keyframes bounceIn {
+  from {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bounceOut {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+}
+
+/* Apply bounce animations to toast */
+.bounce-toast {
+  animation: bounceIn 0.5s ease-out, bounceOut 0.5s ease-in forwards;
+}
