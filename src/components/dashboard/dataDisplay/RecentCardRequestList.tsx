@@ -55,7 +55,6 @@ const RecentCardRequestList = () => {
                       <span className={`${item.status === 'Ready' ? 'text-green-700 border-green-300 bg-green-100' : item.status === 'In Progress' ? 'text-orange-700 border-orange-300 bg-orange-100' : item.status === 'Acknowledged' ? 'text-blue-700 border-blue-300 bg-blue-100' : 'text-gray-700 border-gray-300 bg-gray-100'} ${isExpanded ? 'px-4 py-[4px]' : 'px-2 py-[2px]'} border rounded-full`}>{item.status}</span>
                     </td>
                     <td className={`relative ${isExpanded ? 'py-[5px] text-[12px] sm:py-[8px] sm:text-[15px]' : 'py-[5px] text-[12px]'} px-2 text-center whitespace-nowrap w-2`}>
-                      {/* <button className="text-primary font-semibold py-[5px] px-1">View</button> */}
                       <button onClick={() => navigateToRequestDetails(currentData)} className="text-primary font-semibold py-[5px] px-1">View</button>
                     </td>
                   </tr>

@@ -1,3 +1,5 @@
+'use client';
+
 import { CardStatusDistribution, PIE_COLORS } from '@/utils/data';
 import React from 'react';
 import { Cell, Legend, Pie, PieChart } from 'recharts';

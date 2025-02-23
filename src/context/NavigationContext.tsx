@@ -4,7 +4,6 @@ import { INITIAL_DATA } from '@/utils/data';
 import { currentDataProps } from '@/utils/types';
 import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
 
-// Define NavigationContext
 interface NavigationContextType {
   currentData: currentDataProps;
   setcurrentData: (data: currentDataProps) => void;
@@ -14,10 +13,8 @@ interface NavigationContextType {
   navigateToRequestDetails: (data: currentDataProps) => void;
 }
 
-// Initialize NavigationContext
 const NavigationContext = createContext<NavigationContextType | undefined>(undefined);
 
-// Provide NavigationContext
 export const NavigationProvider = ({ children }: { children: ReactNode }) => {
   const [currentData, setcurrentData] = useState<currentDataProps>(INITIAL_DATA);
 
