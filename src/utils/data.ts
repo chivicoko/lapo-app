@@ -38,13 +38,6 @@ export const recentCardRequestTableHead = [
     {id: 5, title: "Action"},
 ];
 
-export const recentCardInfo = [
-    {id: 1, branch: "Corporate", cardType: 'Instant', quantity: '10', status: 'Ready' },
-    {id: 2, branch: "Corporate", cardType: 'Personalized', quantity: '10', status: 'In Progress' },
-    {id: 3, branch: "Corporate", cardType: 'Personalized', quantity: '10', status: 'Acknowledged' },
-    {id: 4, branch: "Corporate", cardType: 'Instant', quantity: '10', status: 'Pending' },
-];
-
 export const MonthlyIssuance = [
     { Personalized: 90, Instant: 60, month: 'May' },
     { Personalized: 65, Instant: 45, month: 'Jun' },
