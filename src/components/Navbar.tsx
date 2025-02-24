@@ -5,12 +5,17 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { Menu } from '@mui/icons-material';
 import Sidebar from './Sidebar';
-import { useNavTab } from '@/context/NavigationContext';
+import { useNavTab } from '@/context/CardContext';
 import ButtonNeutral from './button/ButtonNeutral';
+import { usePathname, useRouter } from 'next/navigation';
 
 const Navbar: React.FC = () => {
-  const {currentData, handleCardRequestFormToggle, handleCardProfileFormToggle} = useNavTab();
+  const {currentData} = useNavTab();
   const [open, setOpen] = useState(false);
+  const router = useRouter();
+
+  const pathName = usePathname();
+  console.log(pathName);
 
   const closeSidebar = () => setOpen(false);
 
@@ -18,7 +23,7 @@ const Navbar: React.FC = () => {
     <>
       <nav className="flex items-center justify-between gap-3 z-30 py-1 md:py-2 pl-[2px] pr-3 sm:px-3 md:px-5 border-b border-customGray">
         <div className="w-full flex items-center justify-between">
-          <Link href="/" className={`${currentData.currentTab === 'Dashboard' ? 'block' : 'hidden' } lg:hidden sm:mr-4 relative w-[138.32px] h-[45px]`}>
+          <Link href="/" className={`${pathName === '/' ? 'block' : 'hidden' } lg:hidden sm:mr-4 relative w-[138.32px] h-[45px]`}>
             <Image
               src="/images/LAPO_Logo_2022-removebg-preview 1.svg"
               alt="Lapo's Logo"
@@ -30,11 +35,23 @@ const Navbar: React.FC = () => {
           </Link>
 
           <div className='md:w-full flex items-center justify-between'>
-            {currentData.isCardRequestForm === "no" && currentData.currentTab === 'Card Request'
-            ?
+            {pathName === '/card-request' ?
+            <div className="flex items-center gap-1 md:gap-2 text-textGray text-[12px] md:text-sm">
+              <div className="relative size-[16px]">
+                <Image
+                  src="/icons/credit-card-accept.svg"
+                  alt="Request icon"
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+              <span className='whitespace-nowrap text-textGrayDarker'>Card Request</span>
+            </div>
+            : pathName === '/card-request/3' ?
             <div className="flex items-center gap-1 md:gap-2 text-textGray text-[12px] md:text-sm">
               <ButtonNeutral
-                onClick={() => handleCardRequestFormToggle(currentData)}
+                onClick={() => router.back()}
                 btnText1='Back'
                 classes='flex items-center gap-1 md:gap-2 pr-1'
                 icon1={<div className="relative size-[20px]"><Image src="/icons/chevron-left.svg" fill alt='tab icon' className={`object-contain`} sizes="(max-width: 768px) 100vw, 50vw" /></div>}
@@ -51,7 +68,7 @@ const Navbar: React.FC = () => {
                 />
               </span>
 
-              <span className='whitespace-nowrap' >{currentData.currentTab || 'Dashboard'}</span>
+              <span className='whitespace-nowrap'>Card Request</span>
 
               <div className="relative size-[16px]">
                 <Image
@@ -65,11 +82,23 @@ const Navbar: React.FC = () => {
               <span className='whitespace-nowrap text-textGrayDarker'>Request Details</span>
             </div>
             :
-            currentData.isCardProfileForm === "yes" && currentData.currentTab === 'Card Profile'
-            ?
-            <div className="flex items-center gap-2 text-textGray text-[12px] md:text-sm">              
+            pathName === '/card-profile' ?
+            <div className="flex items-center gap-1 md:gap-2 text-textGray text-[12px] md:text-sm">
+              <div className="relative size-[16px]">
+                <Image
+                  src="/icons/credit-card-pos.svg"
+                  alt="Request icon"
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+              <span className='whitespace-nowrap text-textGrayDarker'>Card Profile</span>
+            </div>
+            : pathName === '/card-profile/2' ?
+            <div className="flex items-center gap-1 md:gap-2 text-textGray text-[12px] md:text-sm">
               <ButtonNeutral
-                onClick={() => handleCardProfileFormToggle(currentData)}
+                onClick={() => router.back()}
                 btnText1='Back'
                 classes='flex items-center gap-1 md:gap-2 pr-1'
                 icon1={<div className="relative size-[20px]"><Image src="/icons/chevron-left.svg" fill alt='tab icon' className={`object-contain`} sizes="(max-width: 768px) 100vw, 50vw" /></div>}
@@ -86,8 +115,8 @@ const Navbar: React.FC = () => {
                 />
               </span>
 
-              <span className='whitespace-nowrap' >{currentData.currentTab || 'Dashboard'}</span>
-              
+              <span className='whitespace-nowrap'>Card Profile</span>
+
               <div className="relative size-[16px]">
                 <Image
                   src="/icons/chevron-right.svg"
@@ -100,7 +129,7 @@ const Navbar: React.FC = () => {
               <span className='whitespace-nowrap text-textGrayDarker'>Create Profile</span>
             </div>
             :
-            <div className={`${currentData.currentTab === 'Dashboard' ? 'hidden md:flex' : 'flex'} px-2 items-center gap-2`}>
+            <div className={`${pathName === '/' ? 'hidden md:flex' : 'flex'} px-2 items-center gap-2`}>
               <div className="relative size-[16px]">
                 <Image
                   src={`/icons/${currentData.currentTabImg}` || "/icons/home.svg"}
@@ -115,7 +144,7 @@ const Navbar: React.FC = () => {
             }
 
             <div className="md:w-full flex items-center justify-end gap-5">
-              {currentData.currentTab === 'Dashboard' && 
+              {pathName === '/' && 
               <div className="flex-1 md:flex-none px-1 bg-transparent border border-customGray flex items-center justify-between rounded-full focus-within:ring-1 focus-within:ring-primary hover:ring-primary">
                 <ButtonNeutral classes='p-0 ml-1 rounded-full' icon1={<div className='relative size-[16px]'><Image src="/icons/search-md.svg" fill alt="search icon" className={`object-contain`} sizes="(max-width: 768px) 100vw, 50vw" /></div>} />
                 <input

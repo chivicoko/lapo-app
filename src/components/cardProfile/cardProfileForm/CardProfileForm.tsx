@@ -1,14 +1,30 @@
+'use client';
+
 import FeesList from './FeesList';
 import InputOne from '@/components/inputs/InputOne';
 import InputTwo from '@/components/inputs/InputTwo';
 import InputSelect from '@/components/inputs/InputSelect';
 import ButtonOne from '@/components/button/ButtonOne';
+import { useRouter } from 'next/navigation';
 
 const selectArrary = ['Head Office', 'Second', 'Third', 'Fourth'];
 const selectArrary2 = ['00000000', 'Second', 'Third', 'Fourth'];
 const selectArrary3 = ['Verve', 'Second', 'Third', 'Fourth'];
 
-const CardProfileForm = ({handleCardProfileFormToggle}: {handleCardProfileFormToggle: () => void}) => {
+const CardProfileForm = () => {
+    
+    const router = useRouter();
+
+
+  const createProfile = () => {
+    router.back();   
+    // toast.success(`Profile has been created successfully!`, {
+    //   className: 'bounce-toast custom-toast react-hot-toast-icon w-fit',
+    //   icon: '🔥',
+    //   duration: 3000,
+    // });
+  }
+
   return (
     <div className="py-2 space-y-5">
         <div className="py-3 px-4 bg-white border border-customGray rounded-radius-8">
@@ -57,7 +73,7 @@ const CardProfileForm = ({handleCardProfileFormToggle}: {handleCardProfileFormTo
 
         <FeesList />
 
-        <ButtonOne onClick={handleCardProfileFormToggle} classes='py-2 px-16' btnText1='Create Profile' />
+        <ButtonOne onClick={createProfile} classes='py-2 px-16' btnText1='Create Profile' />
     </div>
   )
 }

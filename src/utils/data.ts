@@ -1,19 +1,19 @@
 
 export const menuItems = [
-    {id: 1, title: "Dashboard", icon: 'home-03.svg', ref: 'Dashboard' },
-    {id: 2, title: "Branches", icon: 'building-06.svg', ref: 'Branches' },
-    {id: 3, title: "Roles", icon: 'user-shield-01.svg', ref: 'Roles' },
-    {id: 4, title: "Users", icon: 'user-group.svg', ref: 'Users' },
-    {id: 5, title: "Card Scheme", icon: 'setting-05.svg', ref: 'Card Scheme' },
-    {id: 6, title: "Card Profile", icon: 'credit-card-pos.svg', ref: 'Card Profile' },
-    {id: 7, title: "Card Request", icon: 'credit-card-accept.svg', ref: 'Card Request' },
-    {id: 8, title: "Stock", icon: 'chart-bar-line.svg', ref: 'Stock' },
-    {id: 9, title: "Cards", icon: 'credit-card.svg', ref: 'Cards' },
-    {id: 10, title: "Authorization List", icon: 'list.svg', ref: 'Authorization List' },
-    {id: 11, title: "Authorization Queue", icon: 'layers-three-01.svg', ref: 'Authorization Queue' },
-    {id: 12, title: "Trail", icon: 'map-01.svg', ref: 'Trail' },
-    {id: 13, title: "Account", icon: 'user.svg', ref: 'Account' },
-    {id: 14, title: "Logout", icon: 'logout-02.svg', ref: 'Logout' },
+    {id: 1, title: "Dashboard", url: '/', icon: 'home-03.svg', ref: 'Dashboard' },
+    {id: 2, title: "Branches", url: '/branches', icon: 'building-06.svg', ref: 'Branches' },
+    {id: 3, title: "Roles", url: '/roles', icon: 'user-shield-01.svg', ref: 'Roles' },
+    {id: 4, title: "Users", url: '/users', icon: 'user-group.svg', ref: 'Users' },
+    {id: 5, title: "Card Scheme", url: '/card-scheme', icon: 'setting-05.svg', ref: 'Card Scheme' },
+    {id: 6, title: "Card Profile", url: '/card-profile', icon: 'credit-card-pos.svg', ref: 'Card Profile' },
+    {id: 7, title: "Card Request", url: '/card-request', icon: 'credit-card-accept.svg', ref: 'Card Request' },
+    {id: 8, title: "Stock", url: '/stock', icon: 'chart-bar-line.svg', ref: 'Stock' },
+    {id: 9, title: "Cards", url: '/cards', icon: 'credit-card.svg', ref: 'Cards' },
+    {id: 10, title: "Authorization List", url: '/authorization-list', icon: 'list.svg', ref: 'Authorization List' },
+    {id: 11, title: "Authorization Queue", url: '/authorization-queue', icon: 'layers-three-01.svg', ref: 'Authorization Queue' },
+    {id: 12, title: "Trail", url: '/trail', icon: 'map-01.svg', ref: 'Trail' },
+    {id: 13, title: "Account", url: '/account', icon: 'user.svg', ref: 'Account' },
+    {id: 14, title: "Logout", url: '/logout', icon: 'logout-02.svg', ref: 'Logout' },
 ];
 
 export const dashboardQuickAccess = [
@@ -134,7 +134,7 @@ export const cardRequestActionBtns = [
 export const INITIAL_DATA = {
     currentTab: 'Dashboard',
     currentTabImg: 'home-03.svg',
-    isCardProfileForm: 'no',
-    isCardRequestForm: 'no',
+    isCardProfileForm: false,
+    isCardRequestForm: false,
 }
 

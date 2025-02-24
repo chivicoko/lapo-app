@@ -1,18 +1,31 @@
 'use client';
 
-import { useNavTab } from '@/context/NavigationContext';
 import { menuItems } from '@/utils/data';
 import Image from 'next/image';
 import Link from 'next/link';
 import ButtonNeutral from './button/ButtonNeutral';
+import { usePathname } from 'next/navigation';
+import ButtonLinkNeutral from './button/ButtonLinkNeutral';
 
 interface SidebarProps {
     show?: string;
     closeSidebar?: () => void;
 }
   
-const Sidebar: React.FC<SidebarProps> = ({ show = 'hidden', closeSidebar = () => {} }) => {
-    const {currentData, handleCurrentTab} = useNavTab();
+const Sidebar: React.FC<SidebarProps> = ({ show = 'hidden', closeSidebar = () => {} }) => {    
+    const pathName = usePathname();
+    // console.log(pathName);
+
+    const isActivePath = (route: string | null) => {
+        if (!route) return false;
+    
+        if (route === '/') {
+            return pathName === route;
+        } else {
+            return pathName.startsWith(route);
+        }
+    };
+
     
     return (
         <nav className={`${show === 'block' ? 'fixed lg:hidden' : 'hidden'} border-r border-customGray px-3 lg:block top-0 left-0 z-50 lg:z-auto w-4/6 sm:w-3/6 lg:w-[21%] xl:w-1/6 h-fit min-h-full     bg-white`}>
@@ -32,11 +45,12 @@ const Sidebar: React.FC<SidebarProps> = ({ show = 'hidden', closeSidebar = () =>
                     
                     <div className="w-full">
                         {menuItems.slice(0, 1).map(item =>
-                            <ButtonNeutral
+                            <ButtonLinkNeutral
                                 key={item.id}
-                                onClick={() => handleCurrentTab(currentData, item.ref, item.icon)}
+                                href={item.url}
+                                // onClick={() => handleCurrentTab(currentData, item.ref, item.icon)}
                                 btnText1={item.title}
-                                classes={`${currentData.currentTab === item.ref ? "text-primary bg-[#F6F6F6] border-customGray" : "text-textGray bg-transparent border-transparent"} focus:ring-transparent flex items-center gap-3 w-full hover:text-primary hover:bg-[#F6F6F6] border hover:border-customGray py-2 px-3 rounded-radius-8 text-sm transition-all duration-300 ease-in-out`}
+                                classes={`${isActivePath(item.url) ? "text-primary bg-[#F6F6F6] border-customGray" : "text-textGray bg-transparent border-transparent"} focus:ring-transparent flex items-center gap-3 w-full hover:text-primary hover:bg-[#F6F6F6] border hover:border-customGray py-2 px-3 rounded-radius-8 text-sm transition-all duration-300 ease-in-out`}
                                 icon1={<div className="relative size-[16px]"><Image src={`/icons/${item.icon}`} fill alt={`${item.title} icon`} title={`Go to ${item.title} page`} className={`object-contain`} sizes="(max-width: 768px) 100vw, 50vw" /></div>}
                             />
                         )}
@@ -46,11 +60,12 @@ const Sidebar: React.FC<SidebarProps> = ({ show = 'hidden', closeSidebar = () =>
                         <ul className="flex flex-col items-start justify-start gap-3 w-full">
                             {menuItems.slice(1, menuItems.length - 1).map(item =>
                                 <li key={item.id} className='w-full'>
-                                    <ButtonNeutral
-                                        onClick={() => handleCurrentTab(currentData, item.ref, item.icon)}
+                                    <ButtonLinkNeutral
+                                        href={item.url}
+                                        // onClick={() => handleCurrentTab(currentData, item.ref, item.icon)}
                                         key={item.id}
                                         btnText1={item.title}
-                                        classes={`${currentData.currentTab === item.ref ? "text-primary bg-[#F6F6F6] border-customGray" : "text-textGray bg-transparent border-transparent"} focus:ring-transparent flex-1 flex items-center gap-3 w-full hover:text-primary hover:bg-[#F6F6F6] border hover:border-customGray py-2 px-3 rounded-radius-8 text-sm transition-all duration-300 ease-in-out`}
+                                        classes={`${isActivePath(item.url) ? "text-primary bg-[#F6F6F6] border-customGray" : "text-textGray bg-transparent border-transparent"} focus:ring-transparent flex-1 flex items-center gap-3 w-full hover:text-primary hover:bg-[#F6F6F6] border hover:border-customGray py-2 px-3 rounded-radius-8 text-sm transition-all duration-300 ease-in-out`}
                                         icon1={<div className="relative size-[16px]"><Image src={`/icons/${item.icon}`} fill alt={`${item.title} icon`} title={`Go to ${item.title} page`} className={`object-contain`} sizes="(max-width: 768px) 100vw, 50vw" /></div>}
                                     />
                                 </li>

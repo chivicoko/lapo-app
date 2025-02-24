@@ -1,7 +1,7 @@
 import { cardRequests, cardRequestTableHead } from '@/utils/data';
-import ButtonNeutral from '../button/ButtonNeutral';
+import ButtonLinkNeutral from '../button/ButtonLinkNeutral';
 
-const CardRequestList = ({handleCardRequestFormToggle}: {handleCardRequestFormToggle: () => void}) => {
+const CardRequestList = () => {
   return (
     <div className={`pt-1`}>
         <div className="flex items-center justify-between gap-6 pt-4 pb-4">
@@ -31,7 +31,7 @@ const CardRequestList = ({handleCardRequestFormToggle}: {handleCardRequestFormTo
                       </span>
                     </td>
                     <td className={`relative py-[6px] px-1 text-[12px] text-center whitespace-nowrap w-2`}>
-                      <ButtonNeutral onClick={handleCardRequestFormToggle} btnText1='View' classes="text-primary font-semibold py-[5px] px-1" />
+                      <ButtonLinkNeutral href='/card-request/3' btnText1='View' classes="text-primary font-semibold py-[5px] px-1" />
                     </td>
                   </tr>
                 ))}

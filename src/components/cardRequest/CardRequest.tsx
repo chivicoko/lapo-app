@@ -2,29 +2,28 @@
 
 import Image from 'next/image';
 import CardRequestList from './CardRequestList';
-import CardRequestForm from './cardRequestForm/CardRequestForm';
-import {useNavTab} from '@/context/NavigationContext';
 
 
 const CardRequest = () => {
-  const {currentData, handleCardRequestFormToggle} = useNavTab();
+  // const {currentData, handleCardRequestFormToggle} = useNavTab();
   // console.log(isCardRequestForm);
 
   return (
     <div className="py-2">
-      {currentData.isCardRequestForm === "yes" ?
+      {/* {!currentData.isCardRequestForm ?
       <div className="flex flex-col text-textGrayDarker gap-1 py-2">
         <h2 className='font-semibold'>Request Details</h2>
         <p className='text-xs'>Perform predetermined actions on card requests here.</p>
       </div>
       :
+      } */}
       <div className="flex flex-col text-textGrayDarker gap-1 py-2">
         <h2 className='font-semibold'>Card Request</h2>
         <p className='text-xs'>View and attend to card requests here.</p>
       </div>
-      }
 
-      {currentData.isCardRequestForm === "no" && 
+      {/* {!currentData.isCardRequestForm && 
+      } */}
       <div className="py-2 border-y-2 border-customGray flex items-center justify-between gap-4">
         <div className="w-80 px-1 bg-white border border-customGray flex items-center justify-between rounded-radius-8 focus-within:ring-1 focus-within:ring-primary hover:ring-primary">
           <button className="relative size-[16px] ml-1">
@@ -46,13 +45,12 @@ const CardRequest = () => {
 
         <div></div>
       </div>
-      }
 
-      {currentData.isCardRequestForm === "no" ?
+      {/* {!currentData.isCardRequestForm ?
       <CardRequestForm />
       :
-      <CardRequestList handleCardRequestFormToggle={() => handleCardRequestFormToggle(currentData)}  />
-      }
+    } */}
+      <CardRequestList />
     </div>
   )
 }

@@ -8,6 +8,6 @@ export interface ChartData {
   export type currentDataProps = {
     currentTab: string,
     currentTabImg: string,
-    isCardProfileForm: string,
-    isCardRequestForm: string,
+    isCardProfileForm: boolean,
+    isCardRequestForm: boolean,
 }
