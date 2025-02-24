@@ -1,11 +1,13 @@
 'use client';
 
 import Image from 'next/image';
-import { cardRequestActionBtns } from '@/utils/data';
-import { useState } from 'react';
+import { cardRequestActionBtns, cardRequests } from '@/utils/data';
+import { useEffect, useState } from 'react';
 import CardRequestSuccessModal from './CardRequestSuccessModal';
 import InputOne from '@/components/inputs/InputOne';
 import ButtonNeutral from '@/components/button/ButtonNeutral';
+import { useParams, usePathname } from 'next/navigation';
+import { recentCardInfoProps } from '@/utils/types';
 
 const CardRequestForm = () => {
     const [currentStatus, setCurrentStatus] = useState<string>('Pending');
@@ -13,6 +15,40 @@ const CardRequestForm = () => {
     const [nextBtn, setNextBtn] = useState<string>('Download for production');
     const [isDispatched, setIsDispatched] = useState<boolean>(false);
     const [isDownloaded, setIsDownloaded] = useState<boolean>(false);
+    
+    const [newCardRequest, setNewCardRequest] = useState<recentCardInfoProps | null>(null);
+
+    const pathName = usePathname();
+    const {id} = useParams();
+    
+    const PathNameArray = pathName.split('/').map(item => item.trim()).filter(item => item !== '');
+    // console.log(pathName);
+    
+      useEffect(() => {
+        if (id) {
+            const existingCardRequest = cardRequests.find(item => item.id === parseInt(PathNameArray[PathNameArray.length - 1], 10))
+
+            if (existingCardRequest) {
+                setNewCardRequest(existingCardRequest);
+            }
+        }
+
+        if (newCardRequest?.status === 'Pending') {
+            setNextBtn('Download for production');
+        }
+        if (newCardRequest?.status === 'In Progress') {
+            setNextBtn('Mark as Ready');
+        }
+        if (newCardRequest?.status === 'Ready') {
+            setNextBtn('Send to Dispatch');
+        }
+        if (newCardRequest?.status === 'Acknowledged') {
+            setNextBtn('')
+        }
+    }, [id, PathNameArray, newCardRequest?.status])
+
+    
+    // console.log(newCardRequest);
 
     const handleActionBtns = (action: string | null) => {
         cardRequestActionBtns.forEach((btn, index) => {
@@ -57,43 +93,40 @@ const CardRequestForm = () => {
                 <form className="w-full md:w-5/6 space-y-4">
                     <div className="w-full flex items-center gap-2 sm:gap-16 md:gap-32">
                         <div className="w-1/2">
-                            <InputOne label='Branch Name' value='Corporate' name="branchName" placeholderText="Enter branch name" />
+                            <InputOne label='Branch Name' value={newCardRequest?.branch} name="branchName" placeholderText="Enter branch name" />
                         </div>
                         <div className="w-1/2">
-                            <InputOne label='Initiator' value='RootUser' name="initiator" placeholderText="RootUser" />
-                        </div>
-                    </div>
-                    <div className="w-full flex items-center gap-2 sm:gap-16 md:gap-32">
-                        <div className="w-1/2">
-                            <InputOne label='Card Type' value='Classic Debit' name="cardType" placeholderText="Classic Debit" />
-                        </div>
-                        <div className="w-1/2">
-                            <InputOne label='Card Charges' value='₦1,500' name="cardCharges" placeholderText="₦1,500" />
+                            <InputOne label='Initiator' value={newCardRequest?.initiator} name="initiator" placeholderText="RootUser" />
                         </div>
                     </div>
                     <div className="w-full flex items-center gap-2 sm:gap-16 md:gap-32">
                         <div className="w-1/2">
-                            <InputOne label='Quantity' value='10' name="quantity" placeholderText="10" />
+                            <InputOne label='Card Type' value={newCardRequest?.cardType} name="cardType" placeholderText="Classic Debit" />
                         </div>
                         <div className="w-1/2">
-                            <InputOne label='Batch' value='095783489' name="batch" placeholderText="095783489" />
+                            <InputOne label='Card Charges' value={newCardRequest?.cardCharges} name="cardCharges" placeholderText="₦1,500" />
+                        </div>
+                    </div>
+                    <div className="w-full flex items-center gap-2 sm:gap-16 md:gap-32">
+                        <div className="w-1/2">
+                            <InputOne label='Quantity' value={newCardRequest?.quantity} name="quantity" placeholderText="10" />
+                        </div>
+                        <div className="w-1/2">
+                            <InputOne label='Batch' value={newCardRequest?.batch} name="batch" placeholderText="095783489" />
                         </div>
                     </div>
                     <div className="w-full flex items-center gap-2 sm:gap-16 md:gap-32">
                         <div className="w-1/2 space-y-1">
                             <label htmlFor="quantity" className="text-sm text-neutral-700">Date Requested</label>
                             <div className="w-full">
-                                <p>11/14/2024  10:27:43</p>
+                                <p>{newCardRequest?.dateRequested}</p>
                             </div>
                         </div>
                         <div className="w-1/2 flex flex-col items-end md:items-start gap-2">
                             <label htmlFor="batch" className="text-sm text-neutral-700">Status</label>
                             <div className="">
-                                {/* <span className={`${currentStatus === 'Ready' ? 'text-green-700 border-green-300 bg-green-100' : item.status === 'In Progress' ? 'text-orange-700 border-orange-300 bg-orange-100' : item.status === 'Acknowledged' ? 'text-blue-700 border-blue-300 bg-blue-100' : 'text-gray-700 border-gray-300 bg-gray-100'} px-4 py-[4px] border rounded-full`}>
-                                    {item.status}
-                                </span> */}
-                                <span className={`${currentStatus === 'Ready' ? 'text-green-700 border-green-300 bg-green-100' : currentStatus === 'In Progress' ? 'text-orange-700 border-orange-300 bg-orange-100' : currentStatus === 'Acknowledged' ? 'text-blue-700 border-blue-300 bg-blue-100' : 'text-gray-700 border-gray-300 bg-gray-100'} px-4 py-[4px] border rounded-full`}>
-                                    {currentStatus}
+                                <span className={`${newCardRequest?.status === 'Ready' ? 'text-green-700 border-green-300 bg-green-100' : newCardRequest?.status === 'In Progress' ? 'text-orange-700 border-orange-300 bg-orange-100' : newCardRequest?.status === 'Acknowledged' ? 'text-blue-700 border-blue-300 bg-blue-100' : 'text-gray-700 border-gray-300 bg-gray-100'} px-4 py-[4px] border rounded-full`}>
+                                    {newCardRequest?.status || currentStatus}
                                 </span>
                             </div>
                         </div>

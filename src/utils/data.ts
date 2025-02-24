@@ -116,11 +116,11 @@ export const cardRequestTableHead = [
 ];
 
 export const cardRequests = [
-    {id: 1, branch: "Corporate", initiator: 'RootUser', quantity: '10', batch: '5650611234', dateRequested: '11/10/2024 23:21:03', status: 'Ready' },
-    {id: 2, branch: "Corporate", initiator: 'RootUser', quantity: '10', batch: '5650611234', dateRequested: '11/10/2024 23:21:03', status: 'In Progress' },
-    {id: 3, branch: "Corporate", initiator: 'RootUser', quantity: '10', batch: '5650611234', dateRequested: '11/10/2024 23:21:03', status: 'Pending' },
-    {id: 4, branch: "Corporate", initiator: 'RootUser', quantity: '10', batch: '5650611234', dateRequested: '11/10/2024 23:21:03', status: 'Ready' },
-    {id: 5, branch: "Corporate", initiator: 'RootUser', quantity: '10', batch: '5650611234', dateRequested: '11/10/2024 23:21:03', status: 'Acknowledged' },
+    {id: 1, branch: "Corporate", initiator: 'RootUser', cardType: 'Classic Debit', cardCharges: '₦1,500', quantity: '10', batch: '5650611234', dateRequested: '11/10/2024 23:21:03', status: 'Ready' },
+    {id: 2, branch: "Corporate", initiator: 'RootUser', cardType: 'Classic Debit', cardCharges: '₦1,500', quantity: '10', batch: '5650611234', dateRequested: '11/10/2024 23:21:03', status: 'In Progress' },
+    {id: 3, branch: "Corporate", initiator: 'RootUser', cardType: 'Classic Debit', cardCharges: '₦1,500', quantity: '10', batch: '5650611234', dateRequested: '11/10/2024 23:21:03', status: 'Pending' },
+    {id: 4, branch: "Corporate", initiator: 'RootUser', cardType: 'Classic Debit', cardCharges: '₦1,500', quantity: '10', batch: '5650611234', dateRequested: '11/10/2024 23:21:03', status: 'Ready' },
+    {id: 5, branch: "Corporate", initiator: 'RootUser', cardType: 'Classic Debit', cardCharges: '₦1,500', quantity: '10', batch: '5650611234', dateRequested: '11/10/2024 23:21:03', status: 'Acknowledged' },
 ];
 
 export const cardRequestActionBtns = [
