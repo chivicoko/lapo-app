@@ -21,6 +21,7 @@ export const CardProvider = ({ children }: { children: ReactNode }) => {
       setcurrentData(JSON.parse(storedData));
     }
   }, []);
+
   return (
     <CardContext.Provider
       value={{

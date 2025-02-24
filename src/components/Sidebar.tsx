@@ -26,7 +26,6 @@ const Sidebar: React.FC<SidebarProps> = ({ show = 'hidden', closeSidebar = () =>
         }
     };
 
-    
     return (
         <nav className={`${show === 'block' ? 'fixed lg:hidden' : 'hidden'} border-r border-customGray px-3 lg:block top-0 left-0 z-50 lg:z-auto w-4/6 sm:w-3/6 lg:w-[21%] xl:w-1/6 h-fit min-h-full     bg-white`}>
             <div className={`overflow-y-scroll custom-scrollbar2 w-full h-full flex flex-col justify-start items-start px-1`}>

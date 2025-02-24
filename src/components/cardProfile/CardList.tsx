@@ -1,8 +1,18 @@
 import { cardProfiles, cardProfileTableHead } from '@/utils/data';
 import Image from 'next/image';
 import ButtonNeutral from '../button/ButtonNeutral';
+import { useState } from 'react';
+import { recentCardInfoProps } from '@/utils/types';
+import ButtonLinkNeutral from '../button/ButtonLinkNeutral';
 
 const CardList = () => {
+  const [newCardProfiles, setNewCardProfiles] = useState<recentCardInfoProps[]>(cardProfiles);
+
+  const deleteCard = (id: number) => {
+    const updateCardProfiles = newCardProfiles.filter(item => item.id !== id)
+    setNewCardProfiles(updateCardProfiles);
+  }
+
   return (
     <div className={`pt-1`}>
         <div className="flex items-center justify-between gap-6 pt-4 pb-4">
@@ -16,7 +26,7 @@ const CardList = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-customGray border border-customGray">
-                {cardProfiles.map(item => (
+                {newCardProfiles.map(item => (
                   <tr
                     key={item.id}
                     className="my-2 divide-x divide-customGray"
@@ -27,8 +37,10 @@ const CardList = () => {
                     <td className={`relative py-[11px] px-2 text-[12px] text-center whitespace-nowrap w-2`}>{item.binPrefix}</td>
                     <td className={`relative py-[11px] px-2 text-[12px] text-center whitespace-nowrap w-2`}>{item.dateCreated}</td>
                     <td className={`relative py-[5px] px-2 text-[10px] text-center whitespace-nowrap w-2 space-x-4`}>
-                      <ButtonNeutral title='Delete Card' icon1={<div className="relative size-[20px]"><Image src="/icons/trash-01.svg" fill alt='trash icon' className={`object-contain`} sizes="(max-width: 768px) 100vw, 50vw" /></div>} />
-                      <ButtonNeutral title='Edit Card' icon1={<div className="relative size-[20px]"><Image src="/icons/edit-01.svg" fill alt='edit icon' className={`object-contain`} sizes="(max-width: 768px) 100vw, 50vw" /></div>} />
+                      <span className='flex items-center justify-center gap-4 h-full'>
+                        <ButtonNeutral onClick={() => deleteCard(item.id)} title='Delete Card' icon1={<div className="relative size-[20px]"><Image src="/icons/trash-01.svg" fill alt='trash icon' className={`object-contain`} sizes="(max-width: 768px) 100vw, 50vw" /></div>} />
+                        <ButtonLinkNeutral href={`/card-profile/${item.id}`} title='Edit Card' icon1={<div className="relative size-[20px]"><Image src="/icons/edit-01.svg" fill alt='edit icon' className={`object-contain`} sizes="(max-width: 768px) 100vw, 50vw" /></div>} />
+                      </span>
                     </td>
                   </tr>
                 ))}

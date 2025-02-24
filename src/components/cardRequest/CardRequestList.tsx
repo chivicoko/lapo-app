@@ -31,7 +31,7 @@ const CardRequestList = () => {
                       </span>
                     </td>
                     <td className={`relative py-[6px] px-1 text-[12px] text-center whitespace-nowrap w-2`}>
-                      <ButtonLinkNeutral href='/card-request/3' btnText1='View' classes="text-primary font-semibold py-[5px] px-1" />
+                      <ButtonLinkNeutral href={`/card-request/${item.id}`} btnText1='View' classes="text-primary font-semibold py-[5px] px-1" />
                     </td>
                   </tr>
                 ))}

@@ -1,21 +1,32 @@
 'use client';
 
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Menu } from '@mui/icons-material';
 import Sidebar from './Sidebar';
 import { useNavTab } from '@/context/CardContext';
 import ButtonNeutral from './button/ButtonNeutral';
-import { usePathname, useRouter } from 'next/navigation';
+import { useParams, usePathname, useRouter } from 'next/navigation';
 
 const Navbar: React.FC = () => {
   const {currentData} = useNavTab();
   const [open, setOpen] = useState(false);
+  const [currentId, setCurrentId] = useState(1);
   const router = useRouter();
 
   const pathName = usePathname();
+  
+  const PathNameArray = pathName.split('/').map(item => item.trim()).filter(item => item !== '');
   console.log(pathName);
+  const {id} = useParams();
+  
+  useEffect(() => {
+    if (id) {
+      setCurrentId(parseInt(PathNameArray[PathNameArray.length - 1], 10));
+      // console.log(id);
+    }
+  }, [id, PathNameArray])
 
   const closeSidebar = () => setOpen(false);
 
@@ -48,7 +59,7 @@ const Navbar: React.FC = () => {
               </div>
               <span className='whitespace-nowrap text-textGrayDarker'>Card Request</span>
             </div>
-            : pathName === '/card-request/3' ?
+            : pathName === `/card-request/${currentId}` ?
             <div className="flex items-center gap-1 md:gap-2 text-textGray text-[12px] md:text-sm">
               <ButtonNeutral
                 onClick={() => router.back()}
@@ -95,7 +106,7 @@ const Navbar: React.FC = () => {
               </div>
               <span className='whitespace-nowrap text-textGrayDarker'>Card Profile</span>
             </div>
-            : pathName === '/card-profile/2' ?
+            : pathName === `/card-profile/${currentId}` ?
             <div className="flex items-center gap-1 md:gap-2 text-textGray text-[12px] md:text-sm">
               <ButtonNeutral
                 onClick={() => router.back()}
