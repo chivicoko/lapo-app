@@ -65,6 +65,17 @@ const CardRequestForm = () => {
                     const btnTextArray = btn.text.split(' ').map(item => item.trim());
                     const newStatus = btnTextArray.slice(2, btnTextArray.length).join(' ');                    
                     setCurrentStatus(newStatus);
+                    
+                    if (newCardRequest) {
+                        newCardRequest.status = newStatus;
+                        console.log(currentBtn);
+                        console.log(nextBtn);
+                        console.log(newCardRequest?.status);
+                        // setNewCardRequest({...newCardRequest, status: `${newStatus}`});
+                        // console.log(newCardRequest?.status);
+                    }
+                    // console.log(newStatus);
+                    // console.log(currentStatus);
                 }
                 if (btn.text === 'Mark as Acknowledged') {
                     setNextBtn('');

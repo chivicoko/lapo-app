@@ -18,7 +18,7 @@ const Navbar: React.FC = () => {
   const pathName = usePathname();
   
   const PathNameArray = pathName.split('/').map(item => item.trim()).filter(item => item !== '');
-  console.log(pathName);
+  // console.log(pathName);
   const {id} = useParams();
   
   useEffect(() => {
