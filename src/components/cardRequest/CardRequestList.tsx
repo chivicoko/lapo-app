@@ -1,7 +1,8 @@
-import { cardRequests, cardRequestTableHead } from '@/utils/data';
+import { cardRequestTableHead } from '@/utils/data';
 import ButtonLinkNeutral from '../button/ButtonLinkNeutral';
+import { recentCardInfoProps } from '@/utils/types';
 
-const CardRequestList = () => {
+const CardRequestList = ({newCardRequests}: {newCardRequests: recentCardInfoProps[]}) => {
   return (
     <div className={`pt-1`}>
         <div className="flex items-center justify-between gap-6 pt-4 pb-4">
@@ -15,7 +16,7 @@ const CardRequestList = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-customGray border border-customGray">
-                {cardRequests.map(item => (
+                {newCardRequests.map(item => (
                   <tr
                     key={item.id}
                     className="my-2 divide-x divide-customGray"

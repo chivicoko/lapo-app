@@ -5,9 +5,26 @@ import CardList from './CardList';
 // import { Toaster, toast } from 'react-hot-toast';
 import ButtonNeutral from '../button/ButtonNeutral';
 import ButtonLinkOne from '../button/ButtonLinkOne';
+import { useState } from 'react';
+import { recentCardInfoProps } from '@/utils/types';
+import { cardProfiles } from '@/utils/data';
 
 
 const CardProfile = () => {
+  const [newCardProfiles, setNewCardProfiles] = useState<recentCardInfoProps[]>(cardProfiles);
+  const [searchText, setSearchText] = useState<string>('');
+  
+  // Search function
+  const filteredCards = newCardProfiles.filter((card) => {
+    if (card.cardName) {
+      return (card.cardName.toLowerCase().includes(searchText.toLowerCase()));
+    }
+  });
+
+  const deleteCard = (id: number) => {
+    const updateCardProfiles = newCardProfiles.filter(item => item.id !== id)
+    setNewCardProfiles(updateCardProfiles);
+  }
 
   // const createProfile = () => {
   //   handleCardProfileFormToggle(currentData);
@@ -34,6 +51,8 @@ const CardProfile = () => {
             type="text"
             placeholder="Search by card name"
             name="searchText"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
             className="bg-transparent w-full py-2 px-1 border-0 text-xs focus:outline-0 focus:ring-0 text-[#666666]"
           />
         </div>
@@ -41,7 +60,7 @@ const CardProfile = () => {
         <ButtonLinkOne href='/card-profile/2' classes='py-[2px] md:py-1 px-2 md:px-4' btnText1='Add Profile' btnText2='+' btnText1Classes='text-sm md:text-base' btnText2Classes='text-lg md:text-2xl' />
       </div>
 
-      <CardList />
+      <CardList deleteCard={deleteCard} newCardProfiles={filteredCards || newCardProfiles} />
     </div>
   )
 }

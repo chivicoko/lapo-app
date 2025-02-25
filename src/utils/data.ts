@@ -17,10 +17,10 @@ export const menuItems = [
 ];
 
 export const dashboardQuickAccess = [
-    {id: 1, text: "Manage a Card", icon: 'credit-card-shield.svg' },
-    {id: 2, text: "Issue Instant Card", icon: 'credit-card-02.svg' },
-    {id: 3, text: "Issue Personalized Card", icon: 'credit-card-edit-2.svg' },
-    {id: 4, text: "Review Card Requests", icon: 'credit-card-plus.svg' },
+    {id: 1, text: "Manage a Card", url: '/card-profile', icon: 'credit-card-shield.svg' },
+    {id: 2, text: "Issue Instant Card", url: '/card-profile', icon: 'credit-card-02.svg' },
+    {id: 3, text: "Issue Personalized Card", url: '/card-request', icon: 'credit-card-edit-2.svg' },
+    {id: 4, text: "Review Card Requests", url: '/card-request', icon: 'credit-card-plus.svg' },
 ];
 
 export const dashboardMetrics = [
@@ -79,9 +79,9 @@ export const cardProfileTableHead = [
 
 export const cardProfiles = [
     {id: 1, cardName: "Verve-1", currency: 'NGN', expiration: '40 months', binPrefix: '50611234', dateCreated: '11/10/2024 23:21:03' },
-    {id: 2, cardName: "Verve-1", currency: 'NGN', expiration: '40 months', binPrefix: '50611234', dateCreated: '11/10/2024 23:21:03' },
-    {id: 3, cardName: "Verve-1", currency: 'NGN', expiration: '40 months', binPrefix: '50611234', dateCreated: '11/10/2024 23:21:03' },
-    {id: 4, cardName: "Verve-1", currency: 'NGN', expiration: '40 months', binPrefix: '50611234', dateCreated: '11/10/2024 23:21:03' },
+    {id: 2, cardName: "Swrve-1", currency: 'NGN', expiration: '40 months', binPrefix: '50611234', dateCreated: '11/10/2024 23:21:03' },
+    {id: 3, cardName: "Debit-1", currency: 'NGN', expiration: '40 months', binPrefix: '50611234', dateCreated: '11/10/2024 23:21:03' },
+    {id: 4, cardName: "Master Card", currency: 'NGN', expiration: '40 months', binPrefix: '50611234', dateCreated: '11/10/2024 23:21:03' },
 ];
 
 export const feesTableHead = [
@@ -110,10 +110,10 @@ export const cardRequestTableHead = [
 
 export const cardRequests = [
     {id: 1, branch: "Corporate", initiator: 'RootUser', cardType: 'Classic Debit', cardCharges: '₦1,500', quantity: '10', batch: '5650611234', dateRequested: '11/10/2024 23:21:03', status: 'Ready' },
-    {id: 2, branch: "Corporate", initiator: 'RootUser', cardType: 'Classic Debit', cardCharges: '₦1,500', quantity: '10', batch: '5650611234', dateRequested: '11/10/2024 23:21:03', status: 'In Progress' },
-    {id: 3, branch: "Corporate", initiator: 'RootUser', cardType: 'Classic Debit', cardCharges: '₦1,500', quantity: '10', batch: '5650611234', dateRequested: '11/10/2024 23:21:03', status: 'Pending' },
-    {id: 4, branch: "Corporate", initiator: 'RootUser', cardType: 'Classic Debit', cardCharges: '₦1,500', quantity: '10', batch: '5650611234', dateRequested: '11/10/2024 23:21:03', status: 'Ready' },
-    {id: 5, branch: "Corporate", initiator: 'RootUser', cardType: 'Classic Debit', cardCharges: '₦1,500', quantity: '10', batch: '5650611234', dateRequested: '11/10/2024 23:21:03', status: 'Acknowledged' },
+    {id: 2, branch: "Non-Corporate", initiator: 'RootUser', cardType: 'Classic Debit', cardCharges: '₦1,500', quantity: '10', batch: '5650611234', dateRequested: '11/10/2024 23:21:03', status: 'In Progress' },
+    {id: 3, branch: "Beth Corporate", initiator: 'RootUser', cardType: 'Classic Debit', cardCharges: '₦1,500', quantity: '10', batch: '5650611234', dateRequested: '11/10/2024 23:21:03', status: 'Pending' },
+    {id: 4, branch: "Big Corporate", initiator: 'RootUser', cardType: 'Classic Debit', cardCharges: '₦1,500', quantity: '10', batch: '5650611234', dateRequested: '11/10/2024 23:21:03', status: 'Ready' },
+    {id: 5, branch: "Normal Corporate", initiator: 'RootUser', cardType: 'Classic Debit', cardCharges: '₦1,500', quantity: '10', batch: '5650611234', dateRequested: '11/10/2024 23:21:03', status: 'Acknowledged' },
 ];
 
 export const cardRequestActionBtns = [

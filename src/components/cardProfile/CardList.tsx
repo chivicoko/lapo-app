@@ -1,17 +1,10 @@
-import { cardProfiles, cardProfileTableHead } from '@/utils/data';
+import { cardProfileTableHead } from '@/utils/data';
 import Image from 'next/image';
 import ButtonNeutral from '../button/ButtonNeutral';
-import { useState } from 'react';
 import { recentCardInfoProps } from '@/utils/types';
 import ButtonLinkNeutral from '../button/ButtonLinkNeutral';
 
-const CardList = () => {
-  const [newCardProfiles, setNewCardProfiles] = useState<recentCardInfoProps[]>(cardProfiles);
-
-  const deleteCard = (id: number) => {
-    const updateCardProfiles = newCardProfiles.filter(item => item.id !== id)
-    setNewCardProfiles(updateCardProfiles);
-  }
+const CardList = ({deleteCard, newCardProfiles}: {deleteCard: (id: number) => void; newCardProfiles: recentCardInfoProps[]}) => {
 
   return (
     <div className={`pt-1`}>

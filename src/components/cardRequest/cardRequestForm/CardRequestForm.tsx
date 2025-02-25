@@ -56,10 +56,12 @@ const CardRequestForm = () => {
                 if (btn.text === 'Download for production') {
                     setCurrentBtn('Download for production');
                     setIsDownloaded(true);
+                    setNextBtn('Mark as In Progress');
                 }
                 if (btn.text === 'Send to Dispatch') {
                     setCurrentBtn('Send to Dispatch');
                     setIsDispatched(true);
+                    setNextBtn('Mark as Acknowledged');
                 }
                 if (btn.text !== 'Download for production' && btn.text !== 'Send to Dispatch') {
                     const btnTextArray = btn.text.split(' ').map(item => item.trim());
@@ -68,17 +70,18 @@ const CardRequestForm = () => {
                     
                     if (newCardRequest) {
                         newCardRequest.status = newStatus;
-                        console.log(currentBtn);
-                        console.log(nextBtn);
-                        console.log(newCardRequest?.status);
-                        // setNewCardRequest({...newCardRequest, status: `${newStatus}`});
-                        // console.log(newCardRequest?.status);
                     }
-                    // console.log(newStatus);
-                    // console.log(currentStatus);
                 }
                 if (btn.text === 'Mark as Acknowledged') {
                     setNextBtn('');
+                // } else if (btn.text === 'Send to Dispatch') {
+                //     setNextBtn('Mark as Acknowledged');
+                //     console.log(currentBtn);
+                //     console.log(nextBtn);
+                // } else if (btn.text === 'Download for production') {
+                //     setNextBtn('Mark as In Progress');
+                //     console.log(currentBtn);
+                //     console.log(nextBtn);
                 } else {
                     setNextBtn(cardRequestActionBtns[index+1].text);
                 }
