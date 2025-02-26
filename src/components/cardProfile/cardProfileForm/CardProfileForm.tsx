@@ -12,18 +12,8 @@ const selectArrary2 = ['00000000', 'Second', 'Third', 'Fourth'];
 const selectArrary3 = ['Verve', 'Second', 'Third', 'Fourth'];
 
 const CardProfileForm = () => {
-    
     const router = useRouter();
-
-
-  const createProfile = () => {
-    router.back();   
-    // toast.success(`Profile has been created successfully!`, {
-    //   className: 'bounce-toast custom-toast react-hot-toast-icon w-fit',
-    //   icon: '🔥',
-    //   duration: 3000,
-    // });
-  }
+    const createProfile = () => router.back();
 
   return (
     <div className="py-2 space-y-5">
@@ -55,16 +45,13 @@ const CardProfileForm = () => {
                         </div>
                         <div className="w-1/2">
                             <InputSelect label='Currency*' valueArray={selectArrary2} name='currency' />
-                            {/* <InputTwo icon='chevron-down.svg' label='Currency*' id='currency' name="currency" placeholderText="00000000" /> */}
                         </div>
                     </div>
 
                     <div className="w-full flex items-center gap-2 sm:gap-16 md:gap-32 pb-2">
                         <div className="w-1/2">
                             <InputSelect label='Branch Blacklist*' valueArray={selectArrary} name='branchBlacklist' />
-                            {/* <InputTwo icon='chevron-down.svg' label='Branch Blacklist*' id='branchBlacklist' name="branchBlacklist" placeholderText="Head Office" /> */}
                         </div>
-                        
                         <div className="w-1/2"></div>
                     </div>
                 </form>

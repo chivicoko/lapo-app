@@ -1,54 +1,48 @@
 'use client';
 
-import Image from 'next/image';
 import { cardRequestActionBtns, cardRequests } from '@/utils/data';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import CardRequestSuccessModal from './CardRequestSuccessModal';
 import InputOne from '@/components/inputs/InputOne';
-import ButtonNeutral from '@/components/button/ButtonNeutral';
 import { useParams, usePathname } from 'next/navigation';
 import { recentCardInfoProps } from '@/utils/types';
+import CardRequestActions from './CardRequestActions';
 
 const CardRequestForm = () => {
+    const [newCardRequest, setNewCardRequest] = useState<recentCardInfoProps | null>(null);
     const [currentStatus, setCurrentStatus] = useState<string>('Pending');
     const [currentBtn, setCurrentBtn] = useState<string>('Download for production');
-    const [nextBtn, setNextBtn] = useState<string>('Download for production');
     const [isDispatched, setIsDispatched] = useState<boolean>(false);
     const [isDownloaded, setIsDownloaded] = useState<boolean>(false);
-    
-    const [newCardRequest, setNewCardRequest] = useState<recentCardInfoProps | null>(null);
 
     const pathName = usePathname();
     const {id} = useParams();
-    
     const PathNameArray = pathName.split('/').map(item => item.trim()).filter(item => item !== '');
-    // console.log(pathName);
-    
-      useEffect(() => {
+
+    const [nextBtn, setNextBtn] = useState<string>(() => {
         if (id) {
             const existingCardRequest = cardRequests.find(item => item.id === parseInt(PathNameArray[PathNameArray.length - 1], 10))
 
             if (existingCardRequest) {
                 setNewCardRequest(existingCardRequest);
+                return existingCardRequest.status === 'Pending' ? 'Download for production' :
+                    existingCardRequest.status === 'In Progress' ? 'Mark as Ready' :
+                    existingCardRequest.status === 'Ready' ? 'Send to Dispatch' : '';
             }
         }
 
         if (newCardRequest?.status === 'Pending') {
-            setNextBtn('Download for production');
+            return 'Download for production';
+        } else if (newCardRequest?.status === 'In Progress') {
+            return 'Mark as Ready';
+        } else if (newCardRequest?.status === 'Ready') {
+            return 'Send to Dispatch';
+        } else if (newCardRequest?.status === 'Acknowledged') {
+            return '';
+        } else {
+            return 'Download for production';
         }
-        if (newCardRequest?.status === 'In Progress') {
-            setNextBtn('Mark as Ready');
-        }
-        if (newCardRequest?.status === 'Ready') {
-            setNextBtn('Send to Dispatch');
-        }
-        if (newCardRequest?.status === 'Acknowledged') {
-            setNextBtn('')
-        }
-    }, [id, PathNameArray, newCardRequest?.status])
-
-    
-    // console.log(newCardRequest);
+    });
 
     const handleActionBtns = (action: string | null) => {
         cardRequestActionBtns.forEach((btn, index) => {
@@ -56,12 +50,10 @@ const CardRequestForm = () => {
                 if (btn.text === 'Download for production') {
                     setCurrentBtn('Download for production');
                     setIsDownloaded(true);
-                    setNextBtn('Mark as In Progress');
                 }
                 if (btn.text === 'Send to Dispatch') {
                     setCurrentBtn('Send to Dispatch');
                     setIsDispatched(true);
-                    setNextBtn('Mark as Acknowledged');
                 }
                 if (btn.text !== 'Download for production' && btn.text !== 'Send to Dispatch') {
                     const btnTextArray = btn.text.split(' ').map(item => item.trim());
@@ -74,14 +66,6 @@ const CardRequestForm = () => {
                 }
                 if (btn.text === 'Mark as Acknowledged') {
                     setNextBtn('');
-                // } else if (btn.text === 'Send to Dispatch') {
-                //     setNextBtn('Mark as Acknowledged');
-                //     console.log(currentBtn);
-                //     console.log(nextBtn);
-                // } else if (btn.text === 'Download for production') {
-                //     setNextBtn('Mark as In Progress');
-                //     console.log(currentBtn);
-                //     console.log(nextBtn);
                 } else {
                     setNextBtn(cardRequestActionBtns[index+1].text);
                 }
@@ -92,9 +76,11 @@ const CardRequestForm = () => {
     const handleSuccessModalClose = () => {
         if (currentBtn === "Download for production") {
             setIsDownloaded(false);
+            setNextBtn('Mark as In Progress');
         }
         if (currentBtn === "Send to Dispatch") {
             setIsDispatched(false);
+            setNextBtn('Mark as Acknowledged');
         }
     };
 
@@ -145,27 +131,9 @@ const CardRequestForm = () => {
                             </div>
                         </div>
                     </div>
-
                 </form>
 
-                <div className="w-full space-y-2 py-3">
-                    <h3 className="text-sm font-semibold text-neutral-700">Actions</h3>
-                    <div className="w-full flex items-center gap-y-3 md:gap-y-6 gap-x-4 md:gap-x-6 lg:gap-x-8 xl:gap-x-12 flex-wrap">
-                        {cardRequestActionBtns.map(item => (
-                            <ButtonNeutral
-                                onClick={() => handleActionBtns(item.text)}
-                                key={item.id}
-                                btnText1={item.text}
-                                bgColor={item.bg}
-                                disabled={nextBtn !== item.text ? true : false}
-                                classes={`${item.bg === 'orange' ? 'bg-orange-700 hover:bg-orange-600 focus:ring-orange-700' : item.bg === 'green' ? 'bg-green-800 hover:bg-green-700 focus:ring-green-800' : item.bg === 'purple' ? 'bg-purple-700 hover:bg-purple-600 focus:ring-purple-700' : item.bg === 'blue' ? 'bg-blue-800 hover:bg-blue-700 focus:ring-blue-800' : 'bg-gray-800 hover:bg-gray-700 focus:ring-gray-800'} ${nextBtn !== item.text ? 'opacity-30 cursor-not-allowed' : 'opacity-100 cursor-pointer'} flex items-center gap-2 text-white whitespace-nowrap py-2 px-3 rounded-[4px] text-sm`}
-                                icon1={<div className="relative size-[20px] ml-1"><Image src={`/icons/${item.icon}`} fill alt={`${item.text} icon`} className={`object-contain`} sizes="(max-width: 768px) 100vw, 50vw" /></div>}
-                            />
-                        ))}
-                    </div>
-
-                </div>
-
+                <CardRequestActions handleActionBtns={handleActionBtns} nextBtn={nextBtn} />
             </div>
         </div>
 

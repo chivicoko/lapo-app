@@ -18,7 +18,7 @@ const FeesList = () => {
         handleModalToggle();
         
         toast.success(`Fee has been added successfully!`, {
-            className: 'bounce-toast custom-toast react-hot-toast-icon w-fit',
+            className: 'custom-toast w-fit',
             icon: '✅',
             duration: 3000,
         });

@@ -99,11 +99,6 @@ body {
   color: #374151 !important;
 }
 
-/* recharts line chart */
-.recharts-responsive-container {
-  /* padding-left: -20px;
-  margin-left: -20px; */
-}
 .recharts-responsive-container .recharts-wrapper {
   /* padding-left: -20px; */
   margin-inline: -25px;
@@ -112,10 +107,16 @@ body {
   font-size: 12px;
 }
 
+svg.recharts-surface path.recharts-rectangle {
+  border-top-right-radius: 12px !important;
+  border-top-left-radius: 12px !important;
+  /* fill: red !important; */
+}
+
 
 /* Styles for the toast container */
 .custom-toast {
-  background-color: #1a202c; /* Dark background */
+  background-color: #1a202c;
   color: white;
   padding: 1rem;
   border-radius: 8px;
@@ -125,58 +126,7 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-}
-
 /* Custom icon size */
 .custom-toast .react-hot-toast-icon {
   font-size: 24px;
-}
-
-/* bounce animation */
-@keyframes bounceIn {
-  from {
-    transform: translateY(50%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes bounceOut {
-  from {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(50%);
-    opacity: 0;
-  }
-}
-
-/* Apply bounce animations to toast */
-.bounce-toast {
-  animation: bounceIn 0.5s ease-out, bounceOut 0.5s ease-in forwards;
 }

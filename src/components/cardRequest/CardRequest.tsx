@@ -2,19 +2,25 @@
 
 import Image from 'next/image';
 import CardRequestList from './CardRequestList';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { cardRequests } from '@/utils/data';
+import { recentCardInfoProps } from '@/utils/types';
+import Search from '../Search';
+import ButtonNeutral from '../button/ButtonNeutral';
 
 
 const CardRequest = () => {
-  const [searchText, setSearchText] = useState<string>('');
+  const [cards, setCards] = useState<recentCardInfoProps[]>(cardRequests);
   
-  // Search function
-  const filteredCards = cardRequests.filter((card) => {
-    if (card.branch) {
-      return (card.branch.toLowerCase().includes(searchText.toLowerCase()));
-    }
-  });
+  const handleSearch = useCallback((text: string) => {
+    const filteredCards = cardRequests.filter((card) => {
+      if (card.branch) {
+        return (card.branch.toLowerCase().includes(text.toLowerCase()));
+      }
+    });
+    
+    setCards(filteredCards);
+  }, []);
 
   return (
     <div className="py-2">
@@ -25,29 +31,14 @@ const CardRequest = () => {
 
       <div className="py-2 border-y-2 border-customGray flex items-center justify-between gap-4">
         <div className="w-80 px-1 bg-white border border-customGray flex items-center justify-between rounded-radius-8 focus-within:ring-1 focus-within:ring-primary hover:ring-primary">
-          <button className="relative size-[16px] ml-1">
-            <Image
-              src="/icons/search-md.svg"
-              alt="bell icon"
-              fill
-              className="object-contain"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-          </button>
-          <input
-            type="text"
-            placeholder="Search by branch"
-            name="searchText"
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
-            className="bg-transparent w-full py-2 px-1 border-0 text-xs focus:outline-0 focus:ring-0 text-[#666666]"
-          />
+          <ButtonNeutral classes='p-0 ml-1 rounded-full' icon1={<div className='relative size-[16px]'><Image src="/icons/search-md.svg" fill alt="search icon" className={`object-contain`} sizes="(max-width: 768px) 100vw, 50vw" /></div>} />
+          <Search onChange={handleSearch} />
         </div>
 
         <div></div>
       </div>
 
-      <CardRequestList newCardRequests={filteredCards || cardRequests} />
+      <CardRequestList newCardRequests={cards} />
     </div>
   )
 }

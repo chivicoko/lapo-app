@@ -29,7 +29,6 @@ const CardProfileFormModal = ({handleModalToggle, addFee}: {handleModalToggle: (
 
                     <div className="w-full">
                         <InputTwo type='number' onChange={(e) => e.target.value} value={0} icon='chevron-selector-vertical.svg' label='Value' name="value" placeholderText="0" />
-                        {/* <InputTwo icon='chevron-selector-vertical.svg' label='Value' id='value' name="value" placeholderText="0" /> */}
                     </div>
 
                     <div className="w-full text-sm">
