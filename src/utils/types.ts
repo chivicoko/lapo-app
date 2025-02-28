@@ -28,3 +28,14 @@ export type recentCardInfoProps = {
   dateCreated?: string,
   dateRequested?: string,
 }
+  
+export type feeProps = {
+  id: number,
+  name?: string | null,
+  value?: string | null,
+  frequency?: string | null,
+  currency?: string | null,
+  time?: string | null,
+  accountPad?: string | null,
+  account?: string | null,
+}

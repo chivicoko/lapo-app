@@ -1,6 +1,5 @@
 import Link from 'next/link';
 
-
 const NotFound = () => {
   return (
     <div className="flex min-h-full flex-col items-center justify-center gap-4 p-24">

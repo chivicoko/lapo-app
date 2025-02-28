@@ -3,11 +3,11 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Menu } from '@mui/icons-material';
 import Sidebar from './Sidebar';
 import { useNavTab } from '@/context/CardContext';
 import ButtonNeutral from './button/ButtonNeutral';
 import { useParams, usePathname, useRouter } from 'next/navigation';
+import MenuIcon from './icons/MenuIcon';
 
 const Navbar: React.FC = () => {
   const {currentData} = useNavTab();
@@ -174,7 +174,7 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Hamburger menu */}
-        <ButtonNeutral onClick={() => setOpen(!open)} icon1={<Menu />} classes='lg:hidden text-gray-700 focus:outline-primary' />
+        <ButtonNeutral onClick={() => setOpen(!open)} icon1={<MenuIcon />} classes='lg:hidden text-gray-700 focus:outline-primary' />
       </nav>
 
       {open && (

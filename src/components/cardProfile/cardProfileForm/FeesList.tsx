@@ -5,18 +5,22 @@ import React, { useState } from 'react'
 import CardProfileFormModal from './CardProfileFormModal';
 import { Toaster, toast } from 'react-hot-toast';
 import ButtonOne from '@/components/button/ButtonOne';
+// import { useNavTab } from '@/context/CardContext';
 
 const FeesList = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    // const {addFee} = useNavTab();
 
     const handleModalToggle = () => {
         setIsModalOpen(prev => !prev);
     };
           
-    const addFee = (e: React.FormEvent<HTMLFormElement>) => {        
+    const addNewFee = (e: React.FormEvent<HTMLFormElement>) => {        
         e.preventDefault();
-        handleModalToggle();
         
+        // addFee();
+        
+        handleModalToggle();
         toast.success(`Fee has been added successfully!`, {
             className: 'custom-toast w-fit',
             icon: '✅',
@@ -62,7 +66,7 @@ const FeesList = () => {
             </div>
         </div>
         
-        {isModalOpen && <CardProfileFormModal handleModalToggle={handleModalToggle} addFee={addFee} />}
+        {isModalOpen && <CardProfileFormModal handleModalToggle={handleModalToggle} addNewFee={addNewFee} />}
     </div>
   )
 }

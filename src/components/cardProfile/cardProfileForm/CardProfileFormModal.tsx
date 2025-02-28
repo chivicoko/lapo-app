@@ -3,7 +3,11 @@ import ButtonOne from '@/components/button/ButtonOne';
 import InputOne from '@/components/inputs/InputOne';
 import InputTwo from '@/components/inputs/InputTwo';
 
-const CardProfileFormModal = ({handleModalToggle, addFee}: {handleModalToggle: () => void, addFee: (e: React.FormEvent<HTMLFormElement>) => void}) => {
+interface CardProfileFormProps {
+    handleModalToggle: () => void,
+    addNewFee: (e: React.FormEvent<HTMLFormElement>) => void,
+}
+const CardProfileFormModal = ({handleModalToggle, addNewFee}: CardProfileFormProps) => {
   return (
     <section className="fixed inset-0 -top-5 bg-gray-800 bg-opacity-80 flex justify-center items-center p-2 z-[999999]">
         <div className="bg-white w-[27rem] rounded-radius-12 shadow-lg flex flex-col justify-center items-center">
@@ -21,7 +25,7 @@ const CardProfileFormModal = ({handleModalToggle, addFee}: {handleModalToggle: (
                 <ButtonNeutral onClick={handleModalToggle} btnText1='&times;' title='Close modal' classes='px-2 rounded-full text-3xl text-textGray hover:text-red-700 hover:rotate-90 transition-all duration-300 ease-in-out' />
             </div>
             
-            <form onSubmit={addFee} className="w-full">
+            <form onSubmit={addNewFee} className="w-full">
                 <div className='border-y border-customGray py-5 px-5 space-y-2'>
                     <div className="w-full">
                         <InputOne label='Fee Name*' name="feeName" placeholderText='Maintenance' />
