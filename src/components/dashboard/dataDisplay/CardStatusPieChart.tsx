@@ -1,10 +1,18 @@
 'use client';
 
 import { CardStatusDistribution, PIE_COLORS } from '@/utils/data';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Cell, Legend, Pie, PieChart } from 'recharts';
 
 const CardStatusPieChart = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) return null;
+
   return (
     <div className='pt-1'>
       <div className="flex items-center justify-between gap-4">
@@ -12,7 +20,7 @@ const CardStatusPieChart = () => {
       </div>
       
       <div className="relative flex items-center justify-center gap-6 pt-3 pb-1">
-        <PieChart width={300} height={250} >
+        <PieChart width={300} height={250}>
           <Pie
             data={CardStatusDistribution}
             innerRadius={80}
@@ -22,7 +30,7 @@ const CardStatusPieChart = () => {
             dataKey="cards"
           >
             {CardStatusDistribution.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={PIE_COLORS[index % PIE_COLORS.length]} />
+              <Cell key={`cell-${entry.id || index}`} fill={PIE_COLORS[index % PIE_COLORS.length]} />
             ))}
           </Pie>
           <Legend />
@@ -34,7 +42,7 @@ const CardStatusPieChart = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CardStatusPieChart
+export default CardStatusPieChart;

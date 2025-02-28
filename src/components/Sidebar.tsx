@@ -109,7 +109,7 @@ const Sidebar: React.FC<SidebarProps> = ({ show = 'hidden', closeSidebar = () =>
                             <div className="relative w-[93px] h-[42px]">
                                 <Image
                                     src="/images/cardinfra logo 1.svg"
-                                    alt="bell icon"
+                                    alt="cardinfra logo"
                                     fill
                                     className="object-contain"
                                     sizes="(max-width: 768px) 100vw, 50vw"

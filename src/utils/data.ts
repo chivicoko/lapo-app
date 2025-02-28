@@ -59,11 +59,11 @@ export const WeeksIncome = [
   ];
 
 export const CardStatusDistribution = [
-    { cards: 950, name: 'Active' },
-    { cards: 300, name: 'Expired' },
-    { cards: 70, name: 'Inactive' },
-    { cards: 90, name: 'Blocked' },
-    { cards: 120, name: 'Lost' },
+    {id: 1, cards: 950, name: 'Active' },
+    {id: 2, cards: 300, name: 'Expired' },
+    {id: 3, cards: 70, name: 'Inactive' },
+    {id: 4, cards: 90, name: 'Blocked' },
+    {id: 5, cards: 120, name: 'Lost' },
   ];
 
 export const PIE_COLORS = ['#01A4AF', '#FFBA24', '#FF4457', '#8020E7', '#014DAF'];

@@ -72,7 +72,7 @@ const Navbar: React.FC = () => {
               <span className="relative size-[16px]">
                 <Image
                   src="/icons/chevron-right.svg"
-                  alt="bell icon"
+                  alt="chevron-right icon"
                   fill
                   className="object-contain"
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -84,7 +84,7 @@ const Navbar: React.FC = () => {
               <div className="relative size-[16px]">
                 <Image
                   src="/icons/chevron-right.svg"
-                  alt="bell icon"
+                  alt="chevron-right icon"
                   fill
                   className="object-contain"
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -119,7 +119,7 @@ const Navbar: React.FC = () => {
               <span className="relative size-[16px]">
                 <Image
                   src="/icons/chevron-right.svg"
-                  alt="bell icon"
+                  alt="chevron-right icon"
                   fill
                   className="object-contain"
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -131,7 +131,7 @@ const Navbar: React.FC = () => {
               <div className="relative size-[16px]">
                 <Image
                   src="/icons/chevron-right.svg"
-                  alt="bell icon"
+                  alt="chevron-right icon"
                   fill
                   className="object-contain"
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -144,7 +144,7 @@ const Navbar: React.FC = () => {
               <div className="relative size-[16px]">
                 <Image
                   src={`/icons/${currentData.currentTabImg}` || "/icons/home.svg"}
-                  alt="bell icon"
+                  alt="tab icon"
                   fill
                   className="object-contain"
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -167,8 +167,8 @@ const Navbar: React.FC = () => {
               </div>
               }
 
-              <ButtonNeutral classes='hidden md:block relative size-[20px] rounded-full' icon1={<Image src="/icons/bell-01.svg" fill alt="bell icon" className={`object-contain`} sizes="(max-width: 768px) 100vw, 50vw" />} />
-              <ButtonNeutral classes='hidden md:block relative size-[32px] ml-2 md:ml-0 rounded-full' icon1={<Image src="/icons/Avatar.svg" fill alt="User placeholder image" className={`object-contain`} sizes="(max-width: 768px) 100vw, 50vw" />} />
+              <ButtonNeutral classes='relative size-[20px] hidden md:block rounded-full' icon1={<Image src="/icons/bell-01.svg" fill alt="bell icon" className={`object-contain`} sizes="(max-width: 768px) 100vw, 50vw" />} />
+              <ButtonNeutral classes='relative size-[32px] hidden md:block ml-2 md:ml-0 rounded-full' icon1={<Image src="/icons/Avatar.svg" fill alt="User placeholder image" className={`object-contain`} sizes="(max-width: 768px) 100vw, 50vw" />} />
             </div>
           </div>
         </div>
