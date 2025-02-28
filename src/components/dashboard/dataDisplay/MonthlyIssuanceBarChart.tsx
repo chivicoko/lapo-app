@@ -48,8 +48,8 @@ const MonthlyIssuanceBarChart = () => {
               <XAxis dataKey="month" tick={{ fontSize: isExpanded ? 15 : 12, fill: '#072635' }} axisLine={{ stroke: '#e2e2e2' }} tickLine={{ stroke: 'transparent' }} />
               <YAxis tick={{ fontSize: isExpanded ? 15 : 12, fill: '#072635' }} axisLine={{ stroke: 'transparent' }} tickLine={{ stroke: 'transparent' }} />
               <Tooltip />
-              <Bar dataKey="Personalized" stackId="a" fill="#014DAF" />
-              <Bar dataKey="Instant" stackId="a" fill="#CCE2FF" />
+              <Bar dataKey="Personalized" stackId="a" fill="#014DAF" maxBarSize={40} />
+              <Bar dataKey="Instant" stackId="a" fill="#CCE2FF" maxBarSize={40} />
               <Legend />
             </BarChart>
           </ResponsiveContainer>
