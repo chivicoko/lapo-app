@@ -28,6 +28,7 @@ const CardStatusPieChart = () => {
             fill="#8884d8"
             paddingAngle={2}
             dataKey="cards"
+            legendType='circle'
           >
             {CardStatusDistribution.map((entry, index) => (
               <Cell key={`cell-${entry.id || index}`} fill={PIE_COLORS[index % PIE_COLORS.length]} />

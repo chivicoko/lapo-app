@@ -94,10 +94,6 @@ export const feesTableHead = [
     {id: 7, title: "Account"},
 ];
 
-export const fees = [
-    {id: 1, name: "", value: '', frequency: '', currency: '', time: '', accountPad: '', account: '' },
-];
-
 export const cardRequestTableHead = [
     {id: 1, title: "Branch"},
     {id: 2, title: "Initiator"},

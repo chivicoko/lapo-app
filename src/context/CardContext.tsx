@@ -1,6 +1,6 @@
 "use client";
 
-import { fees, INITIAL_DATA } from '@/utils/data';
+import { INITIAL_DATA } from '@/utils/data';
 import { currentDataProps, feeProps } from '@/utils/types';
 import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
 
@@ -8,6 +8,7 @@ interface CardContextType {
   currentData: currentDataProps;
   setcurrentData: (data: currentDataProps) => void;
   fee: feeProps | null;
+  feesInfo: feeProps[];
   setFee: (data: feeProps) => void;
   addFee: (data: feeProps) => void;
 }
@@ -16,28 +17,14 @@ const CardContext = createContext<CardContextType | undefined>(undefined);
 
 export const CardProvider = ({ children }: { children: ReactNode }) => {
   const [currentData, setcurrentData] = useState<currentDataProps>(INITIAL_DATA);
-  const [feesInfo, setFeesInfo] = useState<feeProps[]>(fees);
+  const [feesInfo, setFeesInfo] = useState<feeProps[]>([]);
   const [fee, setFee] = useState<feeProps | null>(null);
 
   const addFee = (data: feeProps) => {
     if (data) {
-      setFeesInfo([
-        ...feesInfo,
-        {
-          id: Math.random(),
-          name: data.name,
-          value: data.value,
-          frequency: data.frequency,
-          currency: data.currency,
-          time: data.time,
-          accountPad: data.accountPad,
-          account: data.account
-        }
-      ]);
+      setFeesInfo([...feesInfo, data]);
     }
-
   };
-
   
   useEffect(() => {
     const storedData = localStorage.getItem('currentData');
@@ -54,6 +41,7 @@ export const CardProvider = ({ children }: { children: ReactNode }) => {
         fee,
         setFee,
         addFee,
+        feesInfo,
       }}
     >
       {children}

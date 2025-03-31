@@ -25,7 +25,7 @@ const MonthlyIssuanceBarChart = () => {
               icon1={<div className="relative size-[20px]"><Image src="/icons/maximize-2.svg" fill alt="expansion icon" className={`object-contain`} sizes="(max-width: 768px) 100vw, 50vw" /></div>}
             />
             :
-            <button onClick={toggleChartExpansion} title='Reduce to normal screen view' className="p-2 rounded-full text-3xl hover:text-red-700 hover:rotate-90 origin-center transition-all duration-300 ease-in-out">
+            <button onClick={toggleChartExpansion} title='Reduce to normal screen view' className="p-2 rounded-full text-3xl hover:text-red-700 hover:rotate-90 hover:translate-y-[3.5px] hover:translate-x-[3.5px] transition-all duration-300 ease-in-out">
               &times;
             </button>
           }
@@ -44,12 +44,12 @@ const MonthlyIssuanceBarChart = () => {
                 bottom: 5,
               }}
             >
-              <CartesianGrid strokeDasharray="3 3" />
+              <CartesianGrid strokeDasharray="3 3" vertical={false} />
               <XAxis dataKey="month" tick={{ fontSize: isExpanded ? 15 : 12, fill: '#072635' }} axisLine={{ stroke: '#e2e2e2' }} tickLine={{ stroke: 'transparent' }} />
-              <YAxis tick={{ fontSize: isExpanded ? 15 : 12, fill: '#072635' }} axisLine={{ stroke: 'transparent' }} tickLine={{ stroke: 'transparent' }} />
-              <Tooltip />
-              <Bar dataKey="Personalized" stackId="a" fill="#014DAF" maxBarSize={40} />
-              <Bar dataKey="Instant" stackId="a" fill="#CCE2FF" maxBarSize={40} />
+              <YAxis tick={{ fontSize: isExpanded ? 15 : 12, fill: '#072635' }} axisLine={false} tickLine={{ stroke: 'transparent' }} />
+              <Tooltip contentStyle={{borderRadius: '10px', borderColor: 'gray'}} />
+              <Bar dataKey="Personalized" stackId="a" fill="#014DAF" maxBarSize={40} legendType='circle' radius={[0, 0, 0, 0]} />
+              <Bar dataKey="Instant" stackId="a" fill="#CCE2FF" maxBarSize={40} legendType='circle' radius={[10, 10, 0, 0]} />
               <Legend />
             </BarChart>
           </ResponsiveContainer>

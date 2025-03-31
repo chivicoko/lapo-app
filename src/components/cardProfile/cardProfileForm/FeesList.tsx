@@ -1,25 +1,21 @@
 'use client';
 
-import { fees, feesTableHead } from '@/utils/data';
+import { feesTableHead } from '@/utils/data';
 import React, { useState } from 'react'
 import CardProfileFormModal from './CardProfileFormModal';
 import { Toaster, toast } from 'react-hot-toast';
 import ButtonOne from '@/components/button/ButtonOne';
-// import { useNavTab } from '@/context/CardContext';
+import { useNavTab } from '@/context/CardContext';
 
 const FeesList = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    // const {addFee} = useNavTab();
+    const {feesInfo} = useNavTab();
 
     const handleModalToggle = () => {
         setIsModalOpen(prev => !prev);
     };
           
-    const addNewFee = (e: React.FormEvent<HTMLFormElement>) => {        
-        e.preventDefault();
-        
-        // addFee();
-        
+    const modalFormToggle = () => {
         handleModalToggle();
         toast.success(`Fee has been added successfully!`, {
             className: 'custom-toast w-fit',
@@ -46,7 +42,7 @@ const FeesList = () => {
                         </tr>
                         </thead>
                         <tbody className="divide-y divide-customGray border border-customGray">
-                        {fees.map(item => (
+                        {feesInfo.map(item => (
                             <tr
                             key={item.id}
                             className="my-2 divide-x divide-customGray"
@@ -55,7 +51,7 @@ const FeesList = () => {
                                 <td className={`relative py-[11px] px-2 text-[12px] text-center whitespace-nowrap w-2`}>{item.value}</td>
                                 <td className={`relative py-[11px] px-2 text-[12px] text-center whitespace-nowrap w-2`}>{item.frequency}</td>
                                 <td className={`relative py-[11px] px-2 text-[12px] text-center whitespace-nowrap w-2`}>{item.currency}</td>
-                                <td className={`relative py-[11px] px-2 text-[12px] text-center whitespace-nowrap w-2`}>{item.time}</td>
+                                <td className={`relative py-[11px] px-2 text-[12px] text-center whitespace-nowrap w-2`}>{item.feeImpact}</td>
                                 <td className={`relative py-[11px] px-2 text-[12px] text-center whitespace-nowrap w-2`}>{item.accountPad}</td>
                                 <td className={`relative py-[11px] px-2 text-[12px] text-center whitespace-nowrap w-2`}>{item.account}</td>
                             </tr>
@@ -66,7 +62,7 @@ const FeesList = () => {
             </div>
         </div>
         
-        {isModalOpen && <CardProfileFormModal handleModalToggle={handleModalToggle} addNewFee={addNewFee} />}
+        {isModalOpen && <CardProfileFormModal handleModalToggle={handleModalToggle} modalFormToggle={modalFormToggle} />}
     </div>
   )
 }

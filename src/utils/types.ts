@@ -35,7 +35,7 @@ export type feeProps = {
   value?: string | null,
   frequency?: string | null,
   currency?: string | null,
-  time?: string | null,
+  feeImpact?: string | null,
   accountPad?: string | null,
   account?: string | null,
 }
